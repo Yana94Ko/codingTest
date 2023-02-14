@@ -11,11 +11,10 @@ function solution(today, terms, privacies) {
             if(term.split(" ")[0] == writeTerm){
                 let whileMonth = parseInt(term.split(" ")[1]);
                 endDate = new Date(endDate.setMonth(endDate.getMonth() + whileMonth));
-                endDate = new Date(endDate.setDate(endDate.getDate()-1));
             }
         }
         console.log(endDate, today)
-        if(endDate < today){
+        if(endDate <= today){
             answer.push(idx);
         }
         idx ++;
