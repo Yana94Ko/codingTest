@@ -6,8 +6,7 @@ class Solution {
         // for(int i : numbers){
         //     sum += i;
         // }
-        // double answer = sum / numbers.length;
-        // return answer;
+        // return (double) sum / numbers.length;
         return Arrays.stream(numbers).average().orElse(0);
     }
 }
