@@ -1,26 +1,26 @@
 class Queue {
   constructor() {
-    this.elements = [];
+    this.queue = [];
   }
 
   enqueue(element) {
-    this.elements.push(element);
+    this.queue.push(element);
   }
 
   dequeue() {
-    return this.elements.shift();
+    return this.queue.shift();
   }
 
   front() {
-    return this.elements[0];
+    return this.queue[0];
   }
 
   isEmpty() {
-    return this.elements.length === 0;
+    return this.queue.length === 0;
   }
 
   size() {
-    return this.elements.length;
+    return this.queue.length;
   }
 }
 function solution(priorities, location) {
@@ -37,7 +37,7 @@ function solution(priorities, location) {
     const currentProcess = queue.dequeue();
 
     // 현재 프로세스의 우선순위보다 높은 프로세스가 있는지 확인
-    const hasHigherPriority = queue.elements.some(
+    const hasHigherPriority = queue.queue.some(
       process => process.priority > currentProcess.priority
     );
 
