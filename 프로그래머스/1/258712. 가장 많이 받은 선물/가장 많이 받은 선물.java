@@ -80,17 +80,30 @@ class Solution2 {
         for (int giverIdx = 0; giverIdx < friendsCnt; giverIdx++) {
             for (int takerIdx = 0; takerIdx < friendsCnt; takerIdx++) {
                 if (giverIdx != takerIdx) { // 본인 제외
+                    if(giverIdx > takerIdx) continue;
                     if (giftLogs[giverIdx][takerIdx] != giftLogs[takerIdx][giverIdx]) {
                         // 선물을 주고받았으면서, 누가 더 많이 줬나?
                         int nextMonthTaker = giftLogs[giverIdx][takerIdx] > giftLogs[takerIdx][giverIdx] ? giverIdx : takerIdx;
+                        
                         nextMonthGifts.put(nextMonthTaker, nextMonthGifts.get(nextMonthTaker) + 1);
+                    } else {
+                        // 선물 지수가 같으면 선물을 주고받지 않음
+                        int giverScore = getGiftScore(giftLogs, giverIdx);
+                        int takerScore = getGiftScore(giftLogs, takerIdx);
+                        if (giverScore > takerScore) {
+                            nextMonthGifts.put(giverIdx, nextMonthGifts.get(giverIdx) + 1);
+                        }
                     }
                 }
             }
         }
         
-        // 최대값 반환
-        return Collections.max(nextMonthGifts.values());
+        // 실제로 선물을 받을 인원 중 가장 많이 선물을 받는 횟수 반환
+        int maxGifts = 0;
+        for (int giftsCount : nextMonthGifts.values()) {
+            maxGifts = Math.max(maxGifts, giftsCount);
+        }
+        return maxGifts;
     }
     
     // 선물 지수 계산
