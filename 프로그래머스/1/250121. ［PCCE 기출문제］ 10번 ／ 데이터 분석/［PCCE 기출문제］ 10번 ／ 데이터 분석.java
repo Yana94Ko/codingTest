@@ -14,7 +14,7 @@ class Solution {
         }
         //sort_by에 해당하는 값을 기준으로 오름차순으로 정렬하여 return
         filteredData.sort((o1, o2) -> Integer.compare(o1[extIndex.get(sort_by)], o2[extIndex.get(sort_by)]));
-        return filteredData.toArray(new int[filteredData.size()][]);
+        return filteredData.toArray(int[][]::new);
     }
     
     
